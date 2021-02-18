@@ -1,6 +1,16 @@
 /* Mixins:
   ========================================================================== */
 
+// font-family
+
+@mixin font-lato {
+  font-family: 'Lato', sans-serif;
+}
+
+@mixin font-montserrat {
+  font-family: 'Montserrat', sans-serif;
+}
+
 // px to rem
 @function rem($pixels, $context: $mainFontSize) {
   @if (unitless($pixels)) {
