@@ -157,6 +157,20 @@ section,
   color: #414141;
 }
 
+// === Variables ===
+
+  $screen-sm: 576px;
+  $screen-md: 768px;
+  $screen-lg: 992px;
+  $screen-xl: 1200px;
+
+  $screen-xs-max: 575px;
+  $screen-sm-max: 767px;
+  $screen-md-max: 991px;
+  $screen-lg-max: 1199px;
+
+// === / Variables ===
+
 // Modules:
 // example: @import "modules/my-module.scss";
 
@@ -169,10 +183,12 @@ body {
 }
 
 .section-outer {
+  padding-right: 20px;
+  padding-left: 20px;
 }
 
 .section-inner {
-  width: 1180px;
+  max-width: 1180px;
   margin: 0 auto;
 }
 
@@ -209,6 +225,10 @@ body {
     font-size: 24px;
     flex-shrink: 1;
     padding-top: 35px;
+
+    a {
+      color: #fff;
+    }
   }
   &-content {
     flex-grow: 1;
@@ -242,7 +262,6 @@ body {
 
       &-input {
         flex: 1;
-        padding-right: 44px;
 
         input {
           @include font-montserrat;
@@ -264,8 +283,29 @@ body {
           }
         }
       }
-      &-button {
-      }
+      
+      @media (min-width: $screen-sm) {
+        &-input {
+          padding-right: 40px;
+        }
+      }  
+    
+      @media (max-width: $screen-xs-max) {
+        flex-direction: column;
+
+        &-input {
+          margin-bottom: 10px;
+        }
+
+        &-button {
+          flex: 1;
+
+          .btn-main {
+            display: block;
+            width: 100%;
+          }
+        }
+      }  
     }
   }
 }
@@ -279,6 +319,7 @@ body {
 
 .section-promo-1 {
   display: flex;
+  justify-content: space-between;
 
   &__content,
   &__content {
@@ -286,7 +327,6 @@ body {
   }
 
   &__content {
-    padding-right: 90px;
 
     .title {
       font-size: 32px;
@@ -305,6 +345,21 @@ body {
       height: auto;
     }
   }
+
+  @media (max-width: $screen-sm-max) {
+    flex-direction: column;
+
+    &__video {
+      order: -1;
+      margin-bottom: 20px;
+    }
+  }
+
+  @media (min-width: $screen-md) {
+    &__content {
+      padding-right: 90px;
+    }
+  }
 }
 
 .section-promo-2 {
@@ -317,9 +372,19 @@ body {
     text-align: center;
   }
 
-  .description-item + .description-item {
-    margin-left: 40px;
-  }
+  @media (min-width: $screen-sm) {
+    .description-item + .description-item {
+      margin-left: 40px;
+    }
+  }  
+
+  @media (max-width: $screen-xs-max) {
+    flex-direction: column;
+
+    .description-item + .description-item {
+      margin-top: 40px;
+    }
+  }  
 }
 // === / Promo ===
 
@@ -332,13 +397,7 @@ body {
     display: flex;
   }
 
-  &__img {
-    align-self: flex-end;
-  }
-
   &__content {
-    align-self: center;
-    padding-left: 50px;
 
     &-text {
       @include font-montserrat;
@@ -356,6 +415,34 @@ body {
       line-height: 29px;
     }
   }
+
+  @media (max-width: $screen-sm-max) {
+    .section-inner {
+      flex-direction: column;
+    }
+
+    &__img {
+      img {
+        max-width: 100%;
+      }
+    }
+
+    &__content {
+      order: -1;
+      margin-bottom: 40px;
+    }
+  }
+
+  @media (min-width: $screen-md) {
+    &__img {
+      align-self: flex-end;
+    }
+
+    &__content {
+      align-self: center;
+      padding-left: 50px;
+    }
+  }
 }
 // === / Founder ===
 
@@ -371,11 +458,10 @@ body {
     font-weight: bold;
   }
   &__subtitle {
+    margin-bottom: 80px;
     font-size: 16px;
     line-height: 28px;
     font-weight: 300;
-    margin: 0 auto 80px;
-    width: 50%;
   }
   &__list {
     display: flex;
@@ -423,6 +509,22 @@ body {
         background-color: #f6fafd;
       }
     }
+
+    @media (max-width: $screen-xs-max) {
+
+    }  
+
+    @media (max-width: $screen-xs-max) {
+      flex-direction: column;
+    }  
+  }
+
+  @media (min-width: $screen-sm) {
+    &__subtitle {
+      width: 50%;
+      margin-right: auto;
+      margin-left: auto;
+    }
   }
 }
 // === / Plans ===
@@ -432,8 +534,6 @@ body {
   text-align: center;
   color: #fff;
   background: linear-gradient(to right, #fe985b, #fe4fa7);
-  padding-top: 120px;
-  padding-bottom: 120px;
 
   &__title {
     font-size: 55px;
@@ -446,10 +546,21 @@ body {
 
     font-size: 20px;
     line-height: 30px;
-    width: 50%;
     margin: 0 auto 40px;
   }
-  &__button {
+
+  @media (min-width: $screen-lg) {
+    padding-top: 120px;
+    padding-bottom: 120px;
+
+    &__description {
+      width: 50%;
+    }
+  }
+
+  @media (max-width: $screen-md-max) {
+    padding-top: 60px;
+    padding-bottom: 60px;
   }
 }
 // === / Free ===
@@ -472,9 +583,6 @@ body {
     margin: 0 0 75px;
 
     li {
-      & + li {
-        margin-left: 60px;
-      }
 
       a {
         font-size: 14px;
@@ -490,6 +598,25 @@ body {
         }
       }
     }
+
+    @media (max-width: $screen-xs-max) {
+      flex-direction: column;
+      text-align: center;
+
+      li {
+        & + li {
+          margin-top: 10px;
+        }
+      }
+    }
+
+    @media (min-width: $screen-sm) {
+      li {
+        & + li {
+          margin-left: 60px;
+        }
+      }
+    }
   }
   &__copyright_and_links {
     @include font-montserrat;
@@ -498,9 +625,18 @@ body {
     justify-content: space-between;
     font-size: 14px;
     line-height: 18px;
-    width: 80%;
-    margin: 0 auto;
+
+    @media (min-width: $screen-xl) {
+      width: 60%;
+      margin: 0 auto;
+    }
+  
+    @media (max-width: $screen-sm-max) {
+      flex-direction: column;
+      text-align: center;
+    }
   }
+
 }
 
 .helper-link {
@@ -518,6 +654,14 @@ body {
     &:hover {
       text-decoration: underline;
     }
+  }
+
+  @media (max-width: $screen-sm-max) {
+    display: inline-flex;
+    padding-top: 20px;
+  }
+  @media (min-width: $screen-md) {
+    display: flex;
   }
 }
 // === / Footer ===
